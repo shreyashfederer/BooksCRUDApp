@@ -21,11 +21,7 @@ app.listen(port, () => {
 
 app.get('/books', db.getUsers)
 
-app.get('/book/:id', (req, res) => {
-
-    res.json('hello from simple server :)')
-
-})
+app.get('/book/:id', db.getUserById )
 
 app.post('/book', db.createUser)
 

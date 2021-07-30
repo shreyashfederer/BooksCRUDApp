@@ -22,6 +22,30 @@ const getUsers = (request, response) => {
 
 }
 
+const getUserById = (request, response) => {
+
+    const id = parseInt(request.params.id)
+
+    db.pool.query('SELECT * from books where id = $1 ',[id] ,(error, results) => {
+
+        if (error) {
+
+            if (error.toString().includes("password authentication failed")) {
+                response.status(401).send(`password authentication failure`)
+                console.log(error.toString())
+                return
+            }
+            
+
+        } else {
+            response.status(200).json(results.rows)
+        }
+
+
+    })
+
+}
+
 const createUser = (request, response) => {
 
     const author = request.body.author
@@ -51,5 +75,6 @@ const createUser = (request, response) => {
 
 module.exports = {
     getUsers,
-    createUser
+    createUser,
+    getUserById
 }

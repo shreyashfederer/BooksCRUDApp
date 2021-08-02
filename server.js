@@ -25,10 +25,9 @@ app.get('/book/:id', db.getUserById )
 
 app.post('/book', db.createUser)
 
-app.put('/book/:id', (req, res) => {
 
 
-})
+app.put('/book/:id', db.updateUser)
 
 
 app.delete('/book/:id', (req, res) => {
